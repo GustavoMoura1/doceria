@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anne Moura Doceria Gourmet</title>
+<meta name="description" content="Bolos, tortas e massas na Pedreira, em Belém do Pará. Cinco anos de história, delivery e encomendas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --acai:#2A1038;
+  --acai-2:#4B1D3F;
+  --bacuri:#F4B71E;
+  --goiaba:#F47C9B;
+  --mangueira:#1E5B3F;
+  --leite:#FFF4F6;
+  --ink:#2A1038;
+  --display:'Caprasimo','Georgia',serif;
+  --body:'Figtree','Helvetica Neue',Arial,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--leite);line-height:1.55;font-size:18px;overflow-x:clip}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--bacuri);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+
+/* progress */
+.progress{position:fixed;inset:0 0 auto 0;height:4px;z-index:60;background:transparent}
+.progress i{display:block;height:100%;width:0;background:var(--bacuri)}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(42,16,56,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{font-family:var(--display);font-size:24px;text-decoration:none;line-height:1}
+.brand small{display:block;font-family:var(--body);font-size:12px;letter-spacing:.04em;opacity:.8;margin-top:3px}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{text-decoration:none;font-weight:500;font-size:16px;opacity:.9}
+.nav ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--bacuri)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:17px;text-decoration:none;border:2px solid transparent;transition:transform .25s var(--ease),background .25s,color .25s;cursor:pointer;font-family:var(--body)}
+.btn:hover{transform:translateY(-3px) rotate(-1deg)}
+.btn-primary{background:var(--bacuri);color:var(--ink)}
+.btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-dark{background:var(--acai);color:#fff}
+.btn-sm{padding:10px 20px;font-size:15px}
+
+/* hero */
+.hero{position:relative;min-height:100svh;background:var(--acai);color:#fff;overflow:hidden;display:flex;align-items:center;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,70%) var(--my,40%),rgba(244,183,30,.28),transparent 70%);z-index:-1;transition:background .2s}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:-2}
+#sprinkles{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding-block:110px 70px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(52px,8.6vw,124px);line-height:.95;letter-spacing:-.01em}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}
+.hero h1 .ln span{display:block;transform:translateY(110%);animation:lineUp 1s var(--ease) forwards}
+.hero h1 .ln:nth-child(1) span{animation-delay:.15s}
+.hero h1 .ln:nth-child(2) span{animation-delay:.3s}
+.hero h1 .ln:nth-child(3) span{animation-delay:.45s}
+@keyframes lineUp{to{transform:none}}
+.hero p.lead{margin-top:26px;font-size:clamp(18px,2vw,22px);max-width:30em;opacity:0;animation:fadeIn 1s .9s forwards}
+.hero .cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px;opacity:0;animation:fadeIn 1s 1.1s forwards}
+@keyframes fadeIn{to{opacity:1}}
+.hero-art{position:relative;display:grid;place-items:center}
+.hero-art svg{width:min(480px,100%);height:auto;overflow:visible;cursor:pointer;touch-action:manipulation}
+.hero-hint{position:absolute;bottom:-4px;font-size:14px;opacity:.7;opacity:0;animation:fadeIn 1s 2.6s forwards}
+
+/* cake animation */
+.cake{animation:floaty 5s ease-in-out 2.4s infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.layer{opacity:0;transform:translateY(-200px);animation:drop .9s cubic-bezier(.2,1.5,.4,1) forwards}
+.l1{animation-delay:.5s}.l2{animation-delay:.75s}.l3{animation-delay:1s}.l4{animation-delay:1.25s}.l5{animation-delay:1.5s}
+@keyframes drop{60%{opacity:1}to{opacity:1;transform:none}}
+.glaze{transform-box:fill-box;transform-origin:top;transform:scaleY(0);animation:pour 1.3s 1.9s var(--ease) forwards}
+@keyframes pour{to{transform:scaleY(1)}}
+.berry{transform-box:fill-box;transform-origin:center bottom;transform:scale(0);animation:pop .7s 2.9s cubic-bezier(.3,1.8,.5,1) forwards}
+@keyframes pop{to{transform:scale(1)}}
+.shadow{transform-box:fill-box;transform-origin:center;animation:shadow 5s ease-in-out 2.4s infinite}
+@keyframes shadow{0%,100%{transform:scaleX(1);opacity:.35}50%{transform:scaleX(.9);opacity:.22}}
+.shine{animation:shine 4s ease-in-out 3s infinite;opacity:.0}
+@keyframes shine{0%,100%{opacity:0}40%{opacity:.7}}
+
+/* marquee */
+.marquee{background:var(--bacuri);color:var(--ink);transform:rotate(-1.6deg);margin:-26px -20px 0;position:relative;z-index:3;overflow:hidden;padding:18px 0;box-shadow:0 10px 30px rgba(42,16,56,.25)}
+.marquee-track{display:flex;width:max-content;animation:marq 28s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span.w{font-family:var(--display);font-size:clamp(26px,4vw,44px);white-space:nowrap;padding:0 22px;display:flex;align-items:center;gap:44px}
+.spark{width:22px;height:22px;background:var(--acai);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);flex:none;animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{position:relative}
+.pad{padding:clamp(80px,12vw,150px) 0}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(38px,5.4vw,70px);line-height:1.02;letter-spacing:-.005em}
+.intro{max-width:34em;margin-top:18px;font-size:20px}
+
+/* categories */
+.cats{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:end}
+.cat{position:relative;border-radius:220px 220px 28px 28px;padding:44px 30px 36px;min-height:440px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s;text-decoration:none}
+.cat:nth-child(2){min-height:500px}
+.cat:hover{transform:translateY(-12px) rotate(-.8deg);box-shadow:0 30px 50px -20px rgba(42,16,56,.45)}
+.cat svg{width:100%;height:auto;max-height:200px;margin-bottom:10px}
+.cat h3{font-family:var(--display);font-weight:400;font-size:40px;line-height:1}
+.cat p{margin-top:10px;font-size:17px;max-width:20em}
+.c-bolo{background:var(--goiaba);color:var(--ink)}
+.c-torta{background:var(--bacuri);color:var(--ink)}
+.c-massa{background:var(--mangueira);color:#fff}
+.slice-top{transition:transform .5s var(--ease);transform-box:fill-box;transform-origin:center}
+.c-bolo:hover .slice-top{transform:translateY(-14px) rotate(-4deg)}
+.wedge{transition:transform .6s var(--ease)}
+.c-torta:hover .wedge{transform:translate(14px,-14px) rotate(6deg)}
+.spiral{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 4s ease-in-out infinite alternate;transform-origin:100px 80px}
+.c-massa:hover .spiral{animation-duration:1.6s}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* sunday */
+.sunday-track{height:230vh;background:var(--leite)}
+.sunday-stick{position:sticky;top:0;height:100vh;overflow:hidden}
+.sunday-layer{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 24px}
+.sunday-layer.green{background:var(--mangueira);color:#fff;clip-path:circle(0% at 50% 50%)}
+.sunday-copy{max-width:1000px}
+.sunday-copy h2{font-size:clamp(38px,7vw,96px);line-height:1}
+.sunday-copy p{margin:22px auto 0;max-width:26em;font-size:clamp(18px,2.2vw,24px)}
+.sunday-copy .hours{font-family:var(--display);font-size:clamp(30px,4.4vw,56px);margin-top:26px;line-height:1}
+
+/* numbers */
+.numbers{background:var(--acai);color:#fff}
+.numbers .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.big{font-family:var(--display);font-size:clamp(90px,16vw,220px);line-height:.85;color:var(--bacuri)}
+.big small{font-size:.38em;margin-left:.1em}
+.numbers p{font-size:20px;max-width:18em;margin-top:12px}
+
+/* steps */
+.steps{position:relative;margin-top:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.steps::before{content:"";position:absolute;left:0;right:0;top:34px;height:4px;border-radius:4px;background:repeating-linear-gradient(90deg,var(--goiaba) 0 14px,transparent 14px 26px);transform-origin:left;transform:scaleX(var(--p,0))}
+.step{position:relative}
+.step .n{width:70px;height:70px;border-radius:50%;background:var(--acai);color:var(--bacuri);display:grid;place-items:center;font-family:var(--display);font-size:32px;position:relative;z-index:1;transition:transform .4s var(--ease)}
+.step:hover .n{transform:rotate(-12deg) scale(1.08)}
+.step h3{font-family:var(--display);font-weight:400;font-size:30px;margin:22px 0 8px;line-height:1.05}
+.step p{max-width:19em}
+
+/* visit */
+.visit{background:var(--goiaba)}
+.visit .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.card{background:var(--leite);border-radius:28px;padding:34px;box-shadow:0 24px 40px -24px rgba(42,16,56,.55)}
+.card h3{font-family:var(--display);font-weight:400;font-size:30px;margin-bottom:14px}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px}
+.card dt{font-weight:700}
+.addr{font-size:22px;margin-top:20px}
+.visit .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px}
+.cta-row{margin-top:50px;display:flex;flex-wrap:wrap;gap:14px}
+.btn-outline{border-color:var(--acai);color:var(--acai)}
+.btn-outline:hover{background:rgba(42,16,56,.08)}
+.place{display:flex;align-items:center;gap:22px;margin-top:28px;background:var(--leite);border-radius:28px;padding:22px 28px 22px 22px;text-decoration:none;box-shadow:0 24px 40px -24px rgba(42,16,56,.55);transition:transform .4s var(--ease)}
+.place:hover{transform:translateY(-6px) rotate(-.6deg)}
+.pin{position:relative;flex:none;width:64px;height:84px;display:flex;align-items:flex-end;justify-content:center}
+.pin svg{width:44px;height:auto;margin-bottom:6px;position:relative;z-index:1;opacity:0;transform:translateY(-110px)}
+.place.in .pin svg{animation:pinDrop .9s cubic-bezier(.3,1.6,.5,1) forwards}
+.place.in:hover .pin svg{animation:hop .55s ease-in-out infinite alternate;opacity:1;transform:none}
+@keyframes pinDrop{50%{opacity:1}to{opacity:1;transform:none}}
+@keyframes hop{to{transform:translateY(-10px)}}
+.ripple{position:absolute;left:50%;bottom:4px;width:38px;height:14px;margin-left:-19px;border-radius:50%;border:3px solid var(--goiaba);opacity:0}
+.place.in .ripple{animation:ripple 2.2s .9s ease-out infinite}
+.place.in .ripple.r2{animation-delay:2s}
+@keyframes ripple{0%{transform:scale(.3);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+.place-txt{display:flex;flex-direction:column;gap:2px;line-height:1.3}
+.place-txt strong{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.1}
+.place-txt span{font-size:18px}
+.place-txt em{font-style:normal;font-weight:700;margin-top:8px;text-decoration:underline;text-decoration-color:var(--goiaba);text-decoration-thickness:3px;text-underline-offset:5px}
+.mapbox{margin-top:50px;border-radius:28px;overflow:hidden;height:340px;box-shadow:0 24px 40px -24px rgba(42,16,56,.55);background:var(--leite)}
+.mapbox iframe{width:100%;height:100%;border:0;display:block}
+
+footer{background:var(--acai);color:#fff;padding:44px 0}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer a{text-underline-offset:5px}
+
+@media (max-width:900px){
+  .nav ul{display:none}
+  .hero .wrap{grid-template-columns:1fr;padding-block:96px 50px}
+  .hero-art{order:-1;margin-top:10px}
+  .hero-art svg{width:min(300px,70vw)}
+  .cats{grid-template-columns:1fr}
+  .cat,.cat:nth-child(2){min-height:380px}
+  .numbers .grid,.visit .grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:40px}
+  .steps::before{display:none}
+  .place{padding:18px}
+  .place-txt strong{font-size:22px}
+  .mapbox{height:280px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .layer,.glaze,.berry{opacity:1;transform:none}
+  .hero h1 .ln span{transform:none}
+  .hero p.lead,.hero .cta,.hero-hint{opacity:1}
+  .marquee-track{animation:none}
+  .place .pin svg{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#topo" class="brand">Anne Moura<small>Doceria Gourmet</small></a>
+    <ul>
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#festival">Festival</a></li>
+      <li><a href="#encomendas">Encomendas</a></li>
+      <li><a href="#visite">Visite</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="https://wa.me/5598992383883?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" rel="noopener">Encomendar</a>
+  </div>
+</header>
+
+<main id="topo">
+<section class="hero" id="hero">
+  <canvas id="sprinkles" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <h1><span class="ln"><span>Cinco anos</span></span><span class="ln"><span>adoçando</span></span><span class="ln"><span>Belém.</span></span></h1>
+      <p class="lead">Bolos, tortas e massas feitos na Pedreira, com o jeito de casa da Anne Moura. Peça pelo delivery, encomende para a sua festa ou venha tomar um café.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://wa.me/5598992383883?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" rel="noopener">Encomendar pelo WhatsApp</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/doceriaanemoura/" target="_blank" rel="noopener">Ver cardápio</a>
+        <a class="btn btn-ghost" href="#visite">Como chegar</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg id="cakeSvg" viewBox="0 0 400 400" role="img" aria-label="Bolo de camadas com cobertura dourada e um morango no topo">
+        <ellipse class="shadow" cx="200" cy="372" rx="140" ry="12" fill="#000" opacity=".35"/>
+        <ellipse cx="200" cy="350" rx="160" ry="24" fill="#FFF4F6"/>
+        <ellipse cx="200" cy="346" rx="130" ry="16" fill="#F7DCE4"/>
+        <g class="cake">
+          <g class="layer l1"><rect x="86" y="292" width="228" height="52" rx="16" fill="#4B1D3F"/></g>
+          <g class="layer l2"><rect x="80" y="276" width="240" height="20" rx="10" fill="#F47C9B"/></g>
+          <g class="layer l3"><rect x="86" y="234" width="228" height="46" rx="16" fill="#6A2A57"/></g>
+          <g class="layer l4"><rect x="80" y="218" width="240" height="20" rx="10" fill="#FFF4F6"/></g>
+          <g class="layer l5"><rect x="86" y="180" width="228" height="44" rx="16" fill="#4B1D3F"/></g>
+          <path class="glaze" fill="#F4B71E" d="M78 192 C78 170 98 164 120 164 H280 C302 164 322 170 322 192 V210 C322 230 298 230 298 210 V200 H282 V240 C282 260 256 260 256 240 V200 H238 V222 C238 240 212 240 212 222 V200 H182 V250 C182 270 154 270 154 250 V200 H132 V216 C132 232 108 232 108 216 V200 H102 V210 C102 228 78 228 78 210 Z"/>
+          <path class="shine" d="M110 176 H190" stroke="#FFF" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <g class="berry">
+            <path d="M200 120 C170 120 160 150 176 168 C186 178 214 178 224 168 C240 150 230 120 200 120 Z" fill="#E2335B"/>
+            <path d="M200 120 C192 108 182 108 176 112 C186 112 192 118 200 120 C208 118 214 112 224 112 C218 108 208 108 200 120 Z" fill="#2F8B5A"/>
+            <circle cx="190" cy="140" r="2.6" fill="#FFD9E0"/><circle cx="208" cy="148" r="2.6" fill="#FFD9E0"/><circle cx="198" cy="160" r="2.6" fill="#FFD9E0"/><circle cx="216" cy="134" r="2.6" fill="#FFD9E0"/>
+          </g>
+        </g>
+      </svg>
+      <span class="hero-hint">Toque no bolo</span>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marq"></div>
+</div>
+
+<section class="pad" id="cardapio">
+  <div class="wrap">
+    <h2>O que sai da cozinha da Anne</h2>
+    <p class="intro">Três frentes, feitas todos os dias na Pedreira. Veja o cardápio completo e os sabores da semana no Instagram.</p>
+    <div class="cats">
+      <a class="cat c-bolo" href="https://www.instagram.com/doceriaanemoura/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 160" aria-hidden="true">
+          <g>
+            <rect x="40" y="108" width="120" height="26" rx="8" fill="#2A1038"/>
+            <rect x="34" y="98" width="132" height="10" rx="5" fill="#FFF4F6"/>
+            <rect x="40" y="76" width="120" height="24" rx="8" fill="#4B1D3F"/>
+          </g>
+          <g class="slice-top">
+            <path d="M34 78 C34 62 50 58 66 58 H134 C150 58 166 62 166 78 V86 C166 98 152 98 152 86 V80 H132 V100 C132 112 116 112 116 100 V80 H92 V92 C92 102 78 102 78 92 V80 H50 V88 C50 100 34 100 34 88 Z" fill="#F4B71E"/>
+            <circle cx="100" cy="46" r="11" fill="#E2335B"/>
+            <path d="M100 36 C98 28 92 26 88 28 C93 29 96 32 100 36 Z" fill="#2F8B5A"/>
+          </g>
+        </svg>
+        <div><h3>Bolos</h3><p>Camadas macias, recheio generoso e cobertura que escorre. Para o café, para a mesa de aniversário, para o domingo.</p></div>
+      </a>
+      <a class="cat c-torta" href="https://www.instagram.com/doceriaanemoura/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 160" aria-hidden="true">
+          <circle cx="100" cy="82" r="62" fill="#FFF4F6" stroke="#2A1038" stroke-width="4"/>
+          <circle cx="100" cy="82" r="46" fill="none" stroke="#F47C9B" stroke-width="4" stroke-dasharray="3 9" stroke-linecap="round"/>
+          <path class="wedge" d="M100 82 L100 20 A62 62 0 0 1 143.8 38.2 Z" fill="#F47C9B" stroke="#2A1038" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="100" cy="82" r="8" fill="#2A1038"/>
+        </svg>
+        <div><h3>Tortas</h3><p>Massa crocante, creme no ponto certo, fatia que não dura no prato. Inteiras ou em pedaço.</p></div>
+      </a>
+      <a class="cat c-massa" href="https://www.instagram.com/doceriaanemoura/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 160" aria-hidden="true">
+          <path class="spiral" pathLength="1" d="M100 82 a6 6 0 1 1 12 0 a14 14 0 1 1 -28 0 a22 22 0 1 1 44 0 a30 30 0 1 1 -60 0 a38 38 0 1 1 76 0 a46 46 0 1 1 -92 0" fill="none" stroke="#F4B71E" stroke-width="9" stroke-linecap="round"/>
+        </svg>
+        <div><h3>Massas</h3><p>Prato quente para quem quer algo além do doce. Peça pelo delivery ou venha comer na casa.</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sunday-track" id="festival">
+  <div class="sunday-stick" id="stick">
+    <div class="sunday-layer base">
+      <div class="sunday-copy" id="copy">
+        <h2>Quinta e domingo tem festival de tortas</h2>
+        <p>A casa vira festa de tortas. Chegue a partir das 15h, escolha a sua e fique à mesa.</p>
+        <div class="hours">Todos os dias, das 15h às 21h</div>
+      </div>
+    </div>
+    <div class="sunday-layer green" id="greenLayer" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="numbers pad">
+  <div class="wrap grid">
+    <div>
+      <div class="big"><span class="count" data-to="5">0</span></div>
+      <p>anos de história adoçando Belém.</p>
+    </div>
+    <div>
+      <div class="big">+<span class="count" data-to="10">0</span></div>
+      <p>anos da Anne na confeitaria, antes e depois da casa própria.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="encomendas">
+  <div class="wrap">
+    <h2>Pedir é simples</h2>
+    <p class="intro">Delivery para o dia a dia, encomenda para as datas que pedem um bolo à altura.</p>
+    <div class="steps" id="steps">
+      <div class="step"><div class="n">1</div><h3>Escolha no cardápio</h3><p>Abra o link do perfil no Instagram e veja bolos, tortas e massas.</p></div>
+      <div class="step"><div class="n">2</div><h3>Faça o pedido</h3><p>Delivery para hoje ou encomenda com antecedência para a sua festa.</p></div>
+      <div class="step"><div class="n">3</div><h3>Retire ou receba</h3><p>Passe na Pedreira para buscar, ou espere a entrega em casa.</p></div>
+    </div>
+    <div class="cta-row"><a class="btn btn-dark" href="https://wa.me/5598992383883?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" rel="noopener">Encomendar pelo WhatsApp</a><a class="btn btn-outline" href="https://www.instagram.com/doceriaanemoura/" target="_blank" rel="noopener">Ver cardápio no Instagram</a></div>
+  </div>
+</section>
+
+<section class="visit pad" id="visite">
+  <div class="wrap grid">
+    <div>
+      <h2>Venha conhecer a casa</h2>
+      <a class="place" id="place" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Marques+de+Herval+1315+Pedreira+Bel%C3%A9m+PA" target="_blank" rel="noopener" aria-label="Abrir o endereço no Google Maps">
+        <span class="pin" aria-hidden="true">
+          <i class="ripple"></i><i class="ripple r2"></i>
+          <svg viewBox="0 0 48 64"><path d="M24 2C12.4 2 3 11.2 3 22.6 3 38 24 62 24 62s21-24 21-39.4C45 11.2 35.6 2 24 2z" fill="#2A1038"/><circle cx="24" cy="23" r="8" fill="#F4B71E"/></svg>
+        </span>
+        <span class="place-txt"><strong>Rua Marques de Herval, 1315</strong><span>Pedreira, Belém do Pará</span><em>Abrir no Google Maps</em></span>
+      </a>
+      <div class="cta">
+        <a class="btn btn-dark" href="https://wa.me/5598992383883?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20encomenda." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Horários</h3>
+      <dl>
+        <dt>Todos os dias</dt><dd>15h às 21h</dd>
+        <dt>Quinta e domingo</dt><dd>Festival de tortas</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="mapbox"><iframe title="Mapa da Anne Moura Doceria Gourmet" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Rua+Marques+de+Herval,+1315,+Bel%C3%A9m,+PA&amp;z=16&amp;output=embed"></iframe></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Anne Moura Doceria Gourmet · Belém, Pará</span>
+    <a href="https://www.instagram.com/doceriaanemoura/" target="_blank" rel="noopener">@doceriaanemoura no Instagram</a>
+  </div>
+</footer>
+
+<script>
+/* ===== Configuração fácil ===== */
+const CONFIG = {
+  heroVideo: ""      // coloque aqui o link de um vídeo .mp4 (ex.: um reel da doceria baixado do Instagram)
+};
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+
+/* Vídeo de fundo opcional */
+if (CONFIG.heroVideo && !reduce) {
+  const v = document.createElement('video');
+  v.className = 'hero-video';
+  v.src = CONFIG.heroVideo; v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true;
+  v.setAttribute('aria-hidden', 'true');
+  $('#hero').prepend(v);
+}
+
+/* Marquee */
+(() => {
+  const words = ['Bolos', 'Tortas', 'Massas', 'Festival de tortas', 'Delivery', 'Encomendas'];
+  const one = '<span class="w">' + words.map(w => w + '<i class="spark"></i>').join('') + '</span>';
+  $('#marq').innerHTML = one + one + one + one;
+})();
+
+/* Sprinkles (granulado) */
+const cv = $('#sprinkles'), ctx = cv.getContext('2d');
+const COLORS = ['#F4B71E', '#F47C9B', '#FFF4F6', '#7DD3A8', '#B88CFF'];
+let W = 0, H = 0, dpr = 1, parts = [], mx = 0, my = 0;
+function resize() {
+  const r = cv.getBoundingClientRect();
+  dpr = Math.min(devicePixelRatio || 1, 2);
+  W = cv.width = Math.round(r.width * dpr);
+  H = cv.height = Math.round(r.height * dpr);
+}
+function spawn(x, y, burst) {
+  const a = Math.random() * Math.PI * 2, s = burst ? 3 + Math.random() * 7 : 0;
+  return {
+    x: x ?? Math.random() * W, y: y ?? -20 * dpr,
+    vx: burst ? Math.cos(a) * s * dpr : (Math.random() - .5) * .4 * dpr,
+    vy: burst ? Math.sin(a) * s * dpr - 3 * dpr : (.5 + Math.random() * 1.1) * dpr,
+    r: Math.random() * Math.PI, vr: (Math.random() - .5) * .08,
+    w: (10 + Math.random() * 8) * dpr, h: (4 + Math.random() * 2) * dpr,
+    c: COLORS[(Math.random() * COLORS.length) | 0], depth: .4 + Math.random() * .9, burst: !!burst, life: 1
+  };
+}
+function seed() { parts = []; const n = Math.round(Math.min(70, W / dpr / 14)); for (let i = 0; i < n; i++) { const p = spawn(); p.y = Math.random() * H; parts.push(p); } }
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const p = parts[i];
+    p.x += p.vx + mx * 1.2 * p.depth * dpr; p.y += p.vy; p.r += p.vr;
+    if (p.burst) { p.vy += .22 * dpr; p.vx *= .985; p.life -= .008; }
+    if (p.y > H + 30 || p.life <= 0 || p.x < -40 || p.x > W + 40) {
+      if (p.burst) { parts.splice(i, 1); continue; }
+      Object.assign(p, spawn());
+    }
+    ctx.save(); ctx.globalAlpha = Math.max(p.life, 0) * (.55 + p.depth * .4);
+    ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(-p.w / 2, -p.h / 2, p.w, p.h, p.h / 2); else ctx.rect(-p.w / 2, -p.h / 2, p.w, p.h);
+    ctx.fill(); ctx.restore();
+  }
+  requestAnimationFrame(draw);
+}
+resize(); seed();
+if (!reduce) draw(); else { ctx.clearRect(0, 0, W, H); parts.forEach(p => { ctx.fillStyle = p.c; ctx.globalAlpha = .6; ctx.fillRect(p.x, p.y, p.w, p.h); }); }
+addEventListener('resize', () => { resize(); seed(); });
+
+/* Mouse: brilho + parallax do granulado */
+const hero = $('#hero');
+hero.addEventListener('pointermove', e => {
+  const r = hero.getBoundingClientRect();
+  const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+  hero.style.setProperty('--mx', (px * 100) + '%');
+  hero.style.setProperty('--my', (py * 100) + '%');
+  mx = (px - .5) * 2;
+});
+/* Toque no bolo: explosão de granulado */
+$('#cakeSvg').addEventListener('click', e => {
+  if (reduce) return;
+  const r = cv.getBoundingClientRect();
+  const x = (e.clientX - r.left) * dpr, y = (e.clientY - r.top) * dpr;
+  for (let i = 0; i < 46; i++) parts.push(spawn(x, y, true));
+});
+
+/* Scroll: progresso, domingo, passos */
+const bar = $('#bar'), track = $('#festival'), green = $('#greenLayer'), steps = $('#steps');
+let copyDone = false;
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (scrollY / max * 100) + '%';
+
+  const r = track.getBoundingClientRect();
+  const p = Math.min(Math.max(-r.top / (r.height - innerHeight), 0), 1);
+  const e = 1 - Math.pow(1 - Math.min(p / .8, 1), 3);
+  green.style.clipPath = 'circle(' + (e * 76) + '% at 50% 50%)';
+
+  const s = steps.getBoundingClientRect();
+  const sp = Math.min(Math.max((innerHeight * .85 - s.top) / (innerHeight * .5), 0), 1);
+  steps.style.setProperty('--p', sp);
+}
+/* duplica o texto do domingo na camada verde (efeito de inversão de cor) */
+green.innerHTML = $('#copy').outerHTML.replace('id="copy"', '');
+let ticking = false;
+addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); } }, { passive: true });
+addEventListener('resize', onScroll); onScroll();
+
+/* Contadores */
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (!en.isIntersecting) return;
+  io.unobserve(en.target);
+  const to = +en.target.dataset.to, t0 = performance.now(), d = reduce ? 1 : 1700;
+  (function tick(t) {
+    const k = Math.min((t - t0) / d, 1), v = 1 - Math.pow(1 - k, 3);
+    en.target.textContent = Math.round(to * v);
+    if (k < 1) requestAnimationFrame(tick);
+  })(t0);
+}), { threshold: .6 });
+document.querySelectorAll('.count').forEach(c => io.observe(c));
+
+/* Pin do endereço: anima quando aparece na tela */
+new IntersectionObserver((es, o) => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); o.unobserve(en.target); } }), { threshold: .5 }).observe($('#place'));
+</script>
+</body>
+</html>
